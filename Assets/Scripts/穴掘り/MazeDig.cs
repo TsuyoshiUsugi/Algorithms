@@ -10,7 +10,7 @@ public class MazeDig : MonoBehaviour
 {
     [SerializeField] GameObject _tile;
 
-    int[] _startPos = new int[2] {4, 4};
+    int[] _startPos = new int[2] {5, 5};
         
     MazeTile[,] _maze;
     int _width = 11;
@@ -78,7 +78,6 @@ public class MazeDig : MonoBehaviour
                 }
             }
         }
-
     }
 
     /// <summary>
@@ -88,10 +87,11 @@ public class MazeDig : MonoBehaviour
     /// <param name="y"></param>
     void Dig(int x, int y)
     {
+
         while (true)
         {
             //Œ@‚ê‚é•ûŒü‚ðŠi”[‚·‚é
-            List<Direction> directions = new List<Direction>();
+            List<Direction> directions = new ();
 
             //Še•ûŒü‚Ì2ƒ}ƒX‚ª‚Ç‚¿‚ç‚à•Ç‚È‚çŒ@‚é
             if (_maze[x, y - 1].GetTileType == TileType.Wall && _maze[x, y - 2].GetTileType == TileType.Wall)
@@ -104,7 +104,10 @@ public class MazeDig : MonoBehaviour
                 directions.Add(Direction.LEFT);
 
             //Œ@‚ê‚é•Ç‚ª‚È‚¢‚È‚ç”²‚¯‚é
-            if (directions.Count == 0) break;
+            if (directions.Count == 0)
+            {
+                return;
+            }
 
             SetRoad(x, y);
 
@@ -137,9 +140,7 @@ public class MazeDig : MonoBehaviour
             {
                 Dig(cell.X, cell.Y);
             }
-
         }
-
     }
 
     /// <summary>
