@@ -8,7 +8,7 @@
 
 # 結果　
 ## 穴掘り法  
-スクリプト：https://github.com/TsuyoshiUsugi/Algorithms/blob/master/Assets/Scripts/%E7%A9%B4%E6%8E%98%E3%82%8A/MazeDig2.cs
+スクリプト：https://github.com/TsuyoshiUsugi/Algorithms/blob/master/Assets/Scripts/%E7%A9%B4%E6%8E%98%E3%82%8A/MazeDig2.cs  
 1 最初にエリアのサイズを決める。この時、縦横のサイズは5以上でかつ奇数でなくてはならない。  
 2 エリアの全域を壁に設定する。  
 3 エリアの端の部分を道にする。これはこのあとの道を生成するときに端っこまで道を伸ばさないようにするためである。  
