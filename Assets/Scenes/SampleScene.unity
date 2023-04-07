@@ -262,6 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1846520354}
   - component: {fileID: 1846520355}
+  - component: {fileID: 1846520356}
   m_Layer: 0
   m_Name: MazeDig
   m_TagString: Untagged
@@ -291,9 +292,23 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1846520353}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab45fa8bbe2b41748a5d885b55193201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _tile: {fileID: 2101517062179334728, guid: 8e8a271f433a56349970fedb531642a8, type: 3}
+--- !u!114 &1846520356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846520353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff505b467b0ea1742b02782c02c93b78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wall: {fileID: 2101517062179334728, guid: 8e8a271f433a56349970fedb531642a8, type: 3}
+  _path: {fileID: 2101517062179334728, guid: 6641abfaa11e2254a9c42caa1afe5263, type: 3}

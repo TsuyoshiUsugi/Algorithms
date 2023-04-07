@@ -19,9 +19,9 @@ public class MapGenerator : MonoBehaviour
     void LoadMapData()
     {
         //MazeCreatorをインスタンス化（例として13×13のマップ）
-        maze = new MazeCreator(13, 13);
+        maze = new MazeCreator(101, 101);
         //迷路データ用二次元配列を生成
-        mazeDatas = new int[13, 13];
+        mazeDatas = new int[101, 101];
         //迷路データ作成＆取得
         mazeDatas = maze.CreateMaze();
         //マップの縦の長さ取得
