@@ -91,7 +91,7 @@ public class MazeDig2 : MonoBehaviour
         _maze = new BlockType[_w, _h];
         _alreadyDiggedPoint = new();
 
-        //全体を壁にしてそとを通路にする
+        //全体を壁にして外側を通路にする
         for (int i = 0; i < _w; i++)
         {
             for (int j = 0; j < _h; j++)
@@ -103,7 +103,6 @@ public class MazeDig2 : MonoBehaviour
                 else
                 {
                     _maze[i, j] = BlockType.Wall;
-
                 }
             }
         }
@@ -148,9 +147,6 @@ public class MazeDig2 : MonoBehaviour
     {
         while (true)
         {
-
-            _maze[w, h] = BlockType.Path;
-         
             //四方向を確認して掘れるならdirectionリストに格納する
             List<Direction> directions = new List<Direction>();
             if (_maze[w, h + 1] == BlockType.Wall && _maze[w, h + 2] == BlockType.Wall)
@@ -170,42 +166,44 @@ public class MazeDig2 : MonoBehaviour
                 directions.Add(Direction.Left);
             }
 
-            //掘れる方向がなければこれまで掘ってきた穴から掘れる箇所を取ってきて掘る
+            //掘れる方向がなければループを抜ける
             if (directions.Count == 0) break;
-            
+
+            SetPath(w, h);
+
             //ランダムに掘る方向を決め掘る。掘った地点をリストに入れる
             int digDir = Random.Range(0, directions.Count);
             switch (directions[digDir])
             {
                 case Direction.Up:
-                    SetPath(w, h + 1);
-                    SetPath(w, h + 2);
+                    SetPath(w, ++h);
+                    SetPath(w, ++h);
                     break;
                 case Direction.Right:
-                    SetPath(w + 1, h);
-                    SetPath(w + 2, h);
+                    SetPath(++w, h);
+                    SetPath(++w, h);
                     break;
                 case Direction.Down:
-                    SetPath(w, h - 1);
-                    SetPath(w, h - 2);
+                    SetPath(w, --h);
+                    SetPath(w, --h);
                     break;
                 case Direction.Left:
-                    SetPath(w - 1, h);
-                    SetPath(w - 2, h);
+                    SetPath(--w, h);
+                    SetPath(--w, h);
                     break;
             }
-
-            if (_alreadyDiggedPoint.Count != 0)
-            {
-                int nextDigPointIndex = Random.Range(0, _alreadyDiggedPoint.Count);
-
-                int width = _alreadyDiggedPoint[nextDigPointIndex].w;
-                int height = _alreadyDiggedPoint[nextDigPointIndex].h;
-                _alreadyDiggedPoint.RemoveAt(nextDigPointIndex);
-                Dig(width, height);
-            }
         }
-        
+
+        //次に掘る地点をこれまで掘った地点(奇数)からランダムに取得する
+        if (_alreadyDiggedPoint.Count != 0)
+        {
+            int nextDigPointIndex = Random.Range(0, _alreadyDiggedPoint.Count);
+
+            int width = _alreadyDiggedPoint[nextDigPointIndex].w;
+            int height = _alreadyDiggedPoint[nextDigPointIndex].h;
+            _alreadyDiggedPoint.RemoveAt(nextDigPointIndex);
+            Dig(width, height);
+        }
     }
 
     void SetPath(int w, int h)
